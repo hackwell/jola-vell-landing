@@ -1,7 +1,8 @@
 FROM nginx:alpine
 
-# Copy the landing page
+# Copy the landing page and assets
 COPY index.html /usr/share/nginx/html/index.html
+COPY assets/ /usr/share/nginx/html/assets/
 
 # Custom nginx config for SPA-like behavior
 RUN echo 'server { \
