@@ -38,7 +38,6 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ─── Subtle background pattern ─── */
   body::before {
     content:'';
     position:fixed;
@@ -52,6 +51,10 @@
   }
 
   .container { max-width:1000px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+  /* ─── SVG ICONS ─── */
+  .ico { display:inline-block; width:1em; height:1em; vertical-align:-0.125em; fill:currentColor; flex-shrink:0; }
+  .ico-sm { width:0.85em; height:0.85em; }
 
   /* ─── HERO ─── */
   .hero {
@@ -74,13 +77,13 @@
   }
 
   .hero-ornament {
-    color:var(--gold-dim);
-    font-size:1.4rem;
-    letter-spacing:12px;
+    display:flex;
+    gap:14px;
     margin-bottom:28px;
-    opacity:0.6;
-    font-family:'Cormorant Garamond',serif;
+    opacity:0.4;
   }
+
+  .hero-ornament svg { width:14px; height:14px; fill:var(--gold-dim); }
 
   .hero h1 {
     font-family:'Cormorant Garamond',serif;
@@ -183,13 +186,14 @@
   }
 
   .section-header .ornament {
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.8rem;
-    color:var(--gold-dim);
-    opacity:0.3;
-    letter-spacing:8px;
-    margin-bottom:8px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:12px;
+    opacity:0.25;
   }
+
+  .section-header .ornament svg { width:20px; height:20px; fill:var(--gold-dim); }
 
   .section-header .label {
     font-size:0.7rem;
@@ -297,14 +301,18 @@
     transition:all 0.3s;
   }
 
-  .platform-card:hover {
-    border-color:var(--border-light);
+  .platform-card:hover { border-color:var(--border-light); }
+
+  .platform-card .icon-wrap {
+    display:flex;
+    justify-content:center;
+    margin-bottom:16px;
   }
 
-  .platform-card .icon {
-    font-size:2.4rem;
-    margin-bottom:16px;
-    display:block;
+  .platform-card .icon-wrap svg {
+    width:44px; height:44px;
+    fill:var(--accent);
+    opacity:0.8;
   }
 
   .platform-card h3 {
@@ -312,6 +320,7 @@
     font-size:1.3rem;
     font-weight:500;
     margin-bottom:8px;
+    color:var(--text);
   }
 
   .platform-card p {
@@ -349,9 +358,7 @@
     font-weight:300;
   }
 
-  .bio-text p + p {
-    margin-top:20px;
-  }
+  .bio-text p + p { margin-top:20px; }
 
   .bio-signature {
     font-family:'Cormorant Garamond',serif;
@@ -375,13 +382,8 @@
     text-decoration:none;
     transition:color 0.3s;
   }
-
   footer a:hover { color:var(--text-dim); }
-
-  footer .sep {
-    margin:0 8px;
-    opacity:0.3;
-  }
+  footer .sep { margin:0 8px; opacity:0.3; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width:640px) {
@@ -390,12 +392,11 @@
     section { padding:64px 0; }
   }
 
-  /* ─── FADE IN ANIMATION ─── */
+  /* ─── FADE IN ─── */
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(20px); }
     to { opacity:1; transform:translateY(0); }
   }
-
   .hero > * { animation:fadeUp 0.8s ease-out both; }
   .hero > *:nth-child(1) { animation-delay:0s; }
   .hero > *:nth-child(2) { animation-delay:0.1s; }
@@ -404,27 +405,52 @@
   .hero > *:nth-child(5) { animation-delay:0.4s; }
   .hero > *:nth-child(6) { animation-delay:0.5s; }
   .hero > *:nth-child(7) { animation-delay:0.6s; }
-
   .fade-section { animation:fadeUp 0.6s ease-out both; }
 </style>
 </head>
 <body>
 
+<!-- ─── SVG SPRITE ─── -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="diamond" viewBox="0 0 24 24"><polygon points="12,2 20,12 12,22 4,12"/></symbol>
+  <symbol id="book" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 6h8v12H4z" opacity="0.4"/><path d="M2 4h20v2H2zM2 18h20v2H2z" opacity="0.6"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+  <symbol id="sparkle" viewBox="0 0 24 24"><path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z"/></symbol>
+  <symbol id="arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="asterism" viewBox="0 0 24 24"><path d="M12 3l1.5 6.5L20 11l-6.5 1.5L12 19l-1.5-6.5L4 11l6.5-1.5z"/><circle cx="18" cy="19" r="1.5" opacity="0.5"/><circle cx="12" cy="21" r="1.5" opacity="0.3"/><circle cx="6" cy="19" r="1.5" opacity="0.5"/></symbol>
+  <symbol id="star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></symbol>
+  <symbol id="infinity" viewBox="0 0 24 24"><path d="M18 8c-1.7 0-3.2 1.1-6 4-2.8-2.9-4.3-4-6-4C3.6 8 2 9.8 2 12s1.6 4 4 4c1.7 0 3.2-1.1 6-4 2.8 2.9 4.3 4 6 4 2.4 0 4-1.8 4-4s-1.6-4-4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-ornament">✦ ✦ ✦</div>
+  <div class="hero-ornament">
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+  </div>
   <h1>Jola Vell</h1>
-  <p class="tagline">— Wo die Schatten flüstern und die Sehnsucht brennt —</p>
+  <p class="tagline">&mdash; Wo die Schatten fl&uuml;stern und die Sehnsucht brennt &mdash;</p>
   <div class="divider">Dark Romance</div>
   <p class="hero-bio">
-    Jola Vell erschafft düster-sinnliche Dark-Romance-Geschichten, in denen
-    verbotene Begierde auf geheimnisvolle Mächte trifft. Ihre Heldinnen sind
-    stark, ihre Helden gefährlich – und jede Liebe hat ihren Preis.
+    Jola Vell erschafft d&uuml;ster-sinnliche Dark-Romance-Geschichten, in denen
+    verbotene Begierde auf geheimnisvolle M&auml;chte trifft. Ihre Heldinnen sind
+    stark, ihre Helden gef&auml;hrlich &ndash; und jede Liebe hat ihren Preis.
   </p>
   <div class="hero-links">
-    <a href="#geschichten">📖 Geschichten</a>
-    <a href="#letters2feel" class="primary">✉️ Letters2Feel</a>
-    <a href="#ueber-mich">✦ Über mich</a>
+    <a href="#geschichten">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#book"/></svg>
+      Geschichten
+    </a>
+    <a href="#letters2feel" class="primary">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#mail"/></svg>
+      Letters2Feel
+    </a>
+    <a href="#ueber-mich">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#person"/></svg>
+      &Uuml;ber mich
+    </a>
   </div>
 </section>
 
@@ -432,7 +458,9 @@
 <section id="geschichten" class="fade-section">
   <div class="container">
     <div class="section-header">
-      <div class="ornament">⁂</div>
+      <div class="ornament">
+        <svg viewBox="0 0 24 24"><use href="#asterism"/></svg>
+      </div>
       <p class="label">Kostenlos lesen</p>
       <h2>Kurzgeschichten</h2>
       <div class="divider"></div>
@@ -440,10 +468,13 @@
     <div class="stories-list">
       <div class="story-item">
         <div class="info">
-          <h4>Blutmond über dem Anwesen</h4>
-          <p>Dark Romance · Gothic · ca. 4.500 Wörter · 3 Kapitel</p>
+          <h4>Blutmond &uuml;ber dem Anwesen</h4>
+          <p>Dark Romance &middot; Gothic &middot; ca. 4.500 W&ouml;rter &middot; 3 Kapitel</p>
         </div>
-        <span class="badge coming-soon">✨ In Arbeit</span>
+        <span class="badge coming-soon">
+          <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#sparkle"/></svg>
+          In Arbeit
+        </span>
       </div>
     </div>
   </div>
@@ -453,20 +484,25 @@
 <section id="letters2feel" class="fade-section">
   <div class="container">
     <div class="section-header">
-      <div class="ornament">✧</div>
+      <div class="ornament">
+        <svg viewBox="0 0 24 24"><use href="#star"/></svg>
+      </div>
       <p class="label">eBook-Plattform</p>
       <h2>Letters2Feel</h2>
       <div class="divider"></div>
     </div>
     <div class="platform-card">
-      <span class="icon">✉️</span>
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><use href="#mail"/></svg>
+      </div>
       <h3>Mein Profil bei Letters2Feel</h3>
       <p>
-        Hier findest du meine veröffentlichten eBooks und Geschichten.
-        Letters2Feel ist die Plattform für deutschsprachige Romance-Literatur.
+        Hier findest du meine ver&ouml;ffentlichten eBooks und Geschichten.
+        Letters2Feel ist die Plattform f&uuml;r deutschsprachige Romance-Literatur.
       </p>
       <a href="https://letters2feel.de/benutzer/jolavell/" target="_blank" rel="noopener noreferrer">
-        → Profil besuchen
+        Profil besuchen
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#arrow-right"/></svg>
       </a>
     </div>
   </div>
@@ -476,24 +512,26 @@
 <section id="ueber-mich" class="fade-section">
   <div class="container">
     <div class="section-header">
-      <div class="ornament">∞</div>
-      <p class="label">Über die Autorin</p>
+      <div class="ornament">
+        <svg viewBox="0 0 24 24"><use href="#infinity"/></svg>
+      </div>
+      <p class="label">&Uuml;ber die Autorin</p>
       <h2>Jola Vell</h2>
       <div class="divider"></div>
     </div>
     <div class="bio-text">
       <p>
-        Jola Vell schreibt Dark Romance mit einer Vorliebe für gotische Atmosphären,
+        Jola Vell schreibt Dark Romance mit einer Vorliebe f&uuml;r gotische Atmosph&auml;ren,
         komplexe Charaktere und die dunkleren Seiten der Leidenschaft.
         Ihre Geschichten verbinden sinnliche Erotik mit spannungsgeladenen Plots
-        vor der Kulisse verfallener Anwesen, undurchdringlicher Wälder und
-        geheimnisvoller Alpendörfer.
+        vor der Kulisse verfallener Anwesen, undurchdringlicher W&auml;lder und
+        geheimnisvoller Alpend&ouml;rfer.
       </p>
       <p>
-        Jede Geschichte ist sorgfältig komponiert – mit einer Stimme,
-        die noch lange nachhallt, nachdem die letzte Seite umgeblättert ist.
+        Jede Geschichte ist sorgf&auml;ltig komponiert &ndash; mit einer Stimme,
+        die noch lange nachhallt, nachdem die letzte Seite umgebl&auml;ttert ist.
       </p>
-      <div class="bio-signature">— Jola Vell</div>
+      <div class="bio-signature">&mdash; Jola Vell</div>
     </div>
   </div>
 </section>
@@ -501,7 +539,7 @@
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
-    <p>© 2026 Jola Vell</p>
+    <p>&copy; 2026 Jola Vell</p>
     <p style="margin-top:8px">
       <a href="mailto:jolavell@wshu.net">Kontakt</a>
       <span class="sep">·</span>
