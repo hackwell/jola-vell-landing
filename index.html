@@ -392,6 +392,55 @@
     section { padding:64px 0; }
   }
 
+  /* ─── ÜBER MICH LAYOUT ─── */
+  .about-layout {
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:48px;
+    align-items:start;
+    max-width:800px;
+    margin:0 auto;
+  }
+
+  .about-portrait { position:sticky; top:40px; }
+
+  .portrait-frame {
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--surface);
+    box-shadow:0 8px 40px rgba(0,0,0,0.4);
+  }
+
+  .portrait-svg { display:block; width:100%; height:auto; }
+
+  .portrait-caption {
+    margin-top:12px;
+    text-align:center;
+  }
+
+  .pseudonym-note {
+    font-size:0.7rem;
+    color:var(--text-muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+
+  .about-text .bio-text p {
+    font-size:0.9rem;
+    line-height:2;
+    margin-bottom:16px;
+  }
+
+  .about-text .bio-text p strong { color:var(--text); font-weight:500; }
+
+  .about-text .bio-text p em { color:var(--gold); font-style:italic; }
+
+  @media (max-width:800px) {
+    .about-layout { grid-template-columns:1fr; gap:32px; }
+    .about-portrait { max-width:220px; margin:0 auto; position:static; }
+  }
+
   /* ─── FADE IN ─── */
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(20px); }
@@ -443,9 +492,9 @@
       <svg class="ico" viewBox="0 0 24 24"><use href="#book"/></svg>
       Geschichten
     </a>
-    <a href="#letters2feel" class="primary">
-      <svg class="ico" viewBox="0 0 24 24"><use href="#mail"/></svg>
-      Letters2Feel
+    <a href="https://www.fanfiktion.de/s/6a25d610001048c3237150bb/1/Blutmond-ueber-dem-Anwesen" target="_blank" rel="noopener noreferrer" class="primary">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#book"/></svg>
+      FanFiktion.de
     </a>
     <a href="#ueber-mich">
       <svg class="ico" viewBox="0 0 24 24"><use href="#person"/></svg>
@@ -469,39 +518,40 @@
       <div class="story-item">
         <div class="info">
           <h4>Blutmond &uuml;ber dem Anwesen</h4>
-          <p>Dark Romance &middot; Gothic &middot; ca. 4.500 W&ouml;rter &middot; 3 Kapitel</p>
+          <p>Dark Romance &middot; Gothic &middot; 4.457 W&ouml;rter &middot; 3 Kapitel</p>
         </div>
-        <span class="badge coming-soon">
-          <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#sparkle"/></svg>
-          In Arbeit
-        </span>
+        <a href="https://www.fanfiktion.de/s/6a25d610001048c3237150bb/1/Blutmond-ueber-dem-Anwesen" target="_blank" rel="noopener noreferrer" class="badge" style="text-decoration:none">
+          <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#star"/></svg>
+          Auf FanFiktion.de lesen
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── LETTERS2FEEL ─── -->
-<section id="letters2feel" class="fade-section">
+<!-- ─── FANFIKTION ─── -->
+<section id="fanfiktion" class="fade-section">
   <div class="container">
     <div class="section-header">
       <div class="ornament">
         <svg viewBox="0 0 24 24"><use href="#star"/></svg>
       </div>
-      <p class="label">eBook-Plattform</p>
-      <h2>Letters2Feel</h2>
+      <p class="label">Kostenlos lesen</p>
+      <h2>Auf FanFiktion.de</h2>
       <div class="divider"></div>
     </div>
     <div class="platform-card">
       <div class="icon-wrap">
-        <svg viewBox="0 0 24 24"><use href="#mail"/></svg>
+        <svg viewBox="0 0 24 24"><use href="#book"/></svg>
       </div>
-      <h3>Mein Profil bei Letters2Feel</h3>
+      <h3>Blutmond &uuml;ber dem Anwesen</h3>
       <p>
-        Hier findest du meine ver&ouml;ffentlichten eBooks und Geschichten.
-        Letters2Feel ist die Plattform f&uuml;r deutschsprachige Romance-Literatur.
+        Meine erste Dark-Romance-Novelle ist kostenlos auf FanFiktion.de verf&uuml;gbar.
+        Tauche ein in die d&uuml;stere Welt von Marlene und Viktor &ndash; unter dem Blutmond
+        entscheidet sich alles.
       </p>
-      <a href="https://letters2feel.de/benutzer/jolavell/" target="_blank" rel="noopener noreferrer">
-        Profil besuchen
+      <a href="https://www.fanfiktion.de/s/6a25d610001048c3237150bb/1/Blutmond-ueber-dem-Anwesen" target="_blank" rel="noopener noreferrer">
+        Jetzt lesen
         <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#arrow-right"/></svg>
       </a>
     </div>
@@ -519,19 +569,105 @@
       <h2>Jola Vell</h2>
       <div class="divider"></div>
     </div>
-    <div class="bio-text">
-      <p>
-        Jola Vell schreibt Dark Romance mit einer Vorliebe f&uuml;r gotische Atmosph&auml;ren,
-        komplexe Charaktere und die dunkleren Seiten der Leidenschaft.
-        Ihre Geschichten verbinden sinnliche Erotik mit spannungsgeladenen Plots
-        vor der Kulisse verfallener Anwesen, undurchdringlicher W&auml;lder und
-        geheimnisvoller Alpend&ouml;rfer.
-      </p>
-      <p>
-        Jede Geschichte ist sorgf&auml;ltig komponiert &ndash; mit einer Stimme,
-        die noch lange nachhallt, nachdem die letzte Seite umgebl&auml;ttert ist.
-      </p>
-      <div class="bio-signature">&mdash; Jola Vell</div>
+    <div class="about-layout">
+      <div class="about-portrait">
+        <div class="portrait-frame">
+          <svg viewBox="0 0 400 500" class="portrait-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="bg-glow" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#1a1020"/>
+                <stop offset="100%" stop-color="#08080d"/>
+              </radialGradient>
+              <linearGradient id="hair-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4a1a2a"/>
+                <stop offset="40%" stop-color="#6a2838"/>
+                <stop offset="100%" stop-color="#3a1020"/>
+              </linearGradient>
+              <linearGradient id="skin-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#e8d5cc"/>
+                <stop offset="100%" stop-color="#d4bfb5"/>
+              </linearGradient>
+              <linearGradient id="dress-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1a1028"/>
+                <stop offset="100%" stop-color="#0d0818"/>
+              </linearGradient>
+              <filter id="soft-glow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <rect width="400" height="500" fill="url(#bg-glow)" rx="8"/>
+            <ellipse cx="200" cy="180" rx="75" ry="85" fill="url(#skin-grad)"/>
+            <path d="M135 120 Q140 100 155 95 Q170 90 180 95 Q185 80 200 78 Q215 80 220 95 Q230 90 245 95 Q260 100 265 120 Q270 140 268 160 Q265 180 260 195 Q240 210 200 215 Q160 210 140 195 Q135 180 132 160 Q130 140 135 120Z" fill="url(#skin-grad)"/>
+            <path d="M125 120 Q130 85 155 75 Q180 68 200 65 Q220 68 245 75 Q270 85 275 120 L275 140 Q270 130 260 125 Q245 118 230 120 Q220 125 215 135 Q210 140 200 142 Q190 140 185 135 Q180 125 170 120 Q155 118 140 125 Q130 130 125 140Z" fill="url(#hair-grad)"/>
+            <path d="M125 140 Q120 160 118 190 Q116 220 120 250 Q125 280 135 310 Q140 330 145 350 Q150 370 155 390 L160 400 L165 410 L170 420 Q175 430 180 440 Q185 450 190 455 Q195 460 200 462 Q205 460 210 455 Q215 450 220 440 Q225 430 230 420 L235 410 L240 400 L245 390 Q250 370 255 350 Q260 330 265 310 Q275 280 280 250 Q284 220 282 190 Q280 160 275 140 Q270 130 260 125 Q245 118 230 120 Q220 125 215 135 Q210 140 200 142 Q190 140 185 135 Q180 125 170 120 Q155 118 140 125 Q130 130 125 140Z" fill="url(#hair-grad)"/>
+            <ellipse cx="175" cy="155" rx="12" ry="14" fill="#f0ebe6"/>
+            <ellipse cx="225" cy="155" rx="12" ry="14" fill="#f0ebe6"/>
+            <circle cx="175" cy="155" r="6" fill="#2a1a14"/>
+            <circle cx="225" cy="155" r="6" fill="#2a1a14"/>
+            <circle cx="177" cy="153" r="2" fill="#fff" opacity="0.6"/>
+            <circle cx="227" cy="153" r="2" fill="#fff" opacity="0.6"/>
+            <path d="M185 175 Q200 185 215 175" fill="none" stroke="#c48a7a" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            <path d="M192 168 Q200 172 208 168" fill="none" stroke="#c48a7a" stroke-width="1.2" opacity="0.4"/>
+            <path d="M175 195 Q200 210 225 195" fill="none" stroke="#b07a6a" stroke-width="1" opacity="0.3"/>
+            <path d="M160 220 Q200 235 240 220 L245 260 Q200 280 155 260Z" fill="url(#dress-grad)"/>
+            <path d="M155 260 Q175 275 200 278 Q225 275 245 260 Q240 280 220 295 Q200 305 180 295 Q160 280 155 260Z" fill="url(#dress-grad)"/>
+            <path d="M200 278 L200 350" stroke="#1a1028" stroke-width="2" opacity="0.3"/>
+            <ellipse cx="200" cy="340" rx="60" ry="15" fill="url(#dress-grad)" opacity="0.8"/>
+            <line x1="120" y1="120" x2="100" y2="40" stroke="#6a2838" stroke-width="0.8" opacity="0.15"/>
+            <line x1="280" y1="120" x2="300" y2="40" stroke="#6a2838" stroke-width="0.8" opacity="0.15"/>
+            <line x1="100" y1="40" x2="90" y2="30" stroke="#6a2838" stroke-width="0.6" opacity="0.1"/>
+            <line x1="300" y1="40" x2="310" y2="30" stroke="#6a2838" stroke-width="0.6" opacity="0.1"/>
+            <circle cx="155" cy="130" r="3" fill="#c41e3a" opacity="0.3" filter="url(#soft-glow)"/>
+            <path d="M120 400 L200 460 L280 400" fill="#0d0818" opacity="0.5"/>
+            <text x="200" y="485" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="14" fill="#6e6a82" opacity="0.5">Autorin</text>
+          </svg>
+        </div>
+        <div class="portrait-caption">
+          <span class="pseudonym-note">Jola Vell ist ein Pseudonym</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="bio-text">
+          <p>
+            <strong>Jola Vell</strong> &ndash; das ist der Name, unter dem ich schreibe.
+            Geboren und aufgewachsen in <strong>Leipzig</strong>, lebe ich heute mit
+            meinem Mann und unserer Tochter in einer kleinen Wohnung in der S&uuml;dvorstadt.
+            Tags&uuml;ber arbeite ich als <strong>Krankenschwester</strong> auf einer
+            Intensivstation &ndash; ein Beruf, der mich t&auml;glich mit den verletzlichsten
+            Seiten des Lebens konfrontiert.
+          </p>
+          <p>
+            Das Schreiben begleitet mich, seit ich sechzehn bin. Damals waren es kurze
+            Geschichten, die ich in einem gr&uuml;nen Notizheft sammelte, das ich bis heute
+            besitze. Richtig ernst wurde es vor f&uuml;nf Jahren, als ich nach einer
+            besonders schweren Nachtschicht nicht schlafen konnte und stattdessen die erste
+            Szene von <em>Blutmond &uuml;ber dem Anwesen</em> schrieb. Aus einer Seite
+            wurden drei Kapitel. Aus drei Kapiteln wurde eine Geschichte, die ich endlich
+            mit der Welt teilen wollte.
+          </p>
+          <p>
+            Meine Faszination f&uuml;r die <strong>dunkle Romantik</strong> kommt nicht
+            von ungef&auml;hr. Ich liebe die Stille alter Gem&auml;uer, den Duft von
+            modrigem Holz auf verlassenen Dachb&ouml;den, die Geschichten, die die Mauern
+            vergessener Schl&ouml;sser erz&auml;hlen, wenn niemand hinh&ouml;rt. In meinen
+            B&uuml;chern treffen verbotene Gef&uuml;hle auf geheimnisvolle M&auml;chte &ndash;
+            und die Liebe ist nie einfach, aber immer echt.
+          </p>
+          <p>
+            Wenn ich nicht schreibe oder arbeite, bin ich mit meiner Familie im
+            Leipziger Auwald unterwegs, lese auf dem Sofa stapelweise Dark-Romance-Novels
+            (gern auf Englisch, gern mit Vampiren) oder koche Chaos in der K&uuml;che.
+            Ich sammle alte Tintenf&auml;sser, habe eine Schw&auml;che f&uuml;r Kerzenlicht
+            und bin der festen &Uuml;berzeugung, dass ein Gewitter der perfekte Zeitpunkt
+            zum Lesen ist.
+          </p>
+          <p>
+            Danke, dass du hier bist.
+          </p>
+          <div class="bio-signature">&mdash; Jola</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -541,7 +677,7 @@
   <div class="container">
     <p>&copy; 2026 Jola Vell</p>
     <p style="margin-top:8px">
-      <a href="mailto:jolavell@wshu.net">Kontakt</a>
+      <a href="mailto:jola.vell@proton.me">Kontakt</a>
       <span class="sep">·</span>
       <a href="#" onclick="return false">Impressum</a>
       <span class="sep">·</span>
