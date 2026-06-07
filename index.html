@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jola Vell – Dark Romance Autorin</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a28;
+    --border: #2a2a3e;
+    --text: #e8e4e0;
+    --text-muted: #8884a0;
+    --accent: #c41e3a;
+    --accent-glow: rgba(196, 30, 58, 0.3);
+    --gold: #c9a84c;
+    --gold-dim: #8a7640;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #fff 0%, var(--text) 60%, var(--text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .hero .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  .hero .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold-dim);
+    margin: 0 auto 48px;
+  }
+
+  .hero-bio {
+    max-width: 600px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+  }
+
+  .hero-links a:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: rgba(196, 30, 58, 0.08);
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  section { padding: 100px 0; position: relative; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-header .label {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: var(--text);
+  }
+
+  .section-header .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-dim);
+    margin: 16px auto 0;
+  }
+
+  /* ─── BOOK GRID ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .book-card:hover {
+    border-color: var(--accent-glow);
+    transform: translateY(-2px);
+  }
+
+  .book-card:hover::before { opacity: 1; }
+
+  .book-card .category {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+
+  .book-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .book-card .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .book-card .meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .book-card .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    background: rgba(201, 168, 76, 0.1);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--gold);
+  }
+
+  .book-card .actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .book-card .actions a {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .book-card .actions .amazon {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .book-card .actions .amazon:hover {
+    background: #a01830;
+  }
+
+  .book-card .actions .epub {
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .book-card .actions .epub:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* ─── STORIES SECTION ─── */
+  .stories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .story-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.3s;
+  }
+
+  .story-item:hover {
+    border-color: var(--accent-glow);
+  }
+
+  .story-item .info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .story-item .info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .story-item .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .story-item .platform:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ─── AMAZON SECTION ─── */
+  .amazon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--accent), #8a1528);
+    color: #fff;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+
+  .amazon-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--accent-glow);
+  }
+
+  .amazon-center { text-align: center; }
+
+  .amazon-note {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* ─── PLATFORM LINKS ─── */
+  .platform-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  .platform-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+  }
+
+  .platform-links a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .books-grid { grid-template-columns: 1fr; }
+    .story-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .hero { min-height: auto; padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <p class="hero-subtitle">Dark Romance · Erotik · Gothic</p>
+  <h1>Jola Vell</h1>
+  <p class="tagline">— Wo die Schatten flüstern und die Sehnsucht brennt —</p>
+  <div class="divider"></div>
+  <p class="hero-bio">
+    Jola Vell erschafft düster-sinnliche Dark-Romance-Geschichten, in denen 
+    verbotene Begierde auf geheimnisvolle Mächte trifft. Ihre Heldinnen sind 
+    stark, ihre Helden gefährlich – und jede Liebe hat ihren Preis. 
+    Willkommen in Welten, in denen die Nacht nie ganz ohne Licht ist.
+  </p>
+  <div class="hero-links">
+    <a href="#buecher">📖 Bücher</a>
+    <a href="#geschichten">📝 Kurzgeschichten</a>
+    <a href="https://letters2feel.de" target="_blank" rel="noopener">✉️ Letters2Feel</a>
+  </div>
+</section>
+
+<!-- ─── BÜCHER ─── -->
+<section id="buecher">
+  <div class="container">
+    <div class="section-header">
+      <p class="label">Romanreihe</p>
+      <h2>Bücher bei Amazon</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="books-grid" id="bookGrid">
+      <!-- Books injected via JS -->
+    </div>
+    <div class="amazon-center" style="margin-top:48px">
+      <a href="#" class="amazon-badge" target="_blank" rel="noopener">
+        → Alle Bücher auf Amazon.de entdecken
+      </a>
+      <p class="amazon-note">Auch erhältlich bei Kindle Unlimited</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── KURZGESCHICHTEN ─── -->
+<section id="geschichten">
+  <div class="container">
+    <div class="section-header">
+      <p class="label">Kostenlos lesen</p>
+      <h2>Kurzgeschichten</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="stories-list" id="storyList">
+      <div class="story-item">
+        <div class="info">
+          <h4>Blutmond über dem Anwesen</h4>
+          <p>Dark Romance · Gothic · 4.500 Wörter</p>
+        </div>
+        <span class="platform">Bald verfügbar ✨</span>
+      </div>
+    </div>
+    <div class="platform-links">
+      <a href="https://letters2feel.de/autor/jolavell/" target="_blank" rel="noopener">Letters2Feel</a>
+      <a href="https://wattpad.com" target="_blank" rel="noopener">Wattpad</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ÜBER DIE AUTORIN ─── -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <p class="label">Über die Autorin</p>
+      <h2>Jola Vell</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="max-width:600px;margin:0 auto;text-align:center;color:var(--text-muted);line-height:1.8">
+      <p>
+        Jola Vell schreibt Dark Romance mit einer Vorliebe für gotische Atmosphären, 
+        komplexe Charaktere und die dunkleren Seiten der Leidenschaft. 
+        Ihre Geschichten verbinden sinnliche Erotik mit spannungsgeladenen Plots 
+        vor der Kulisse verfallener Anwesen, undurchdringlicher Wälder und 
+        geheimnisvoller Alpendörfer.
+      </p>
+      <p style="margin-top:16px">
+        Jede Geschichte ist sorgfältig komponiert – mit einer Stimme, 
+        die noch lange nachhallt, nachdem die letzte Seite umgeblättert ist.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <p>© 2026 Jola Vell · Alle Rechte vorbehalten</p>
+    <p style="margin-top:8px">
+      <a href="#">Impressum</a> · 
+      <a href="#">Datenschutz</a> · 
+      <a href="mailto:jolavell@wshu.net">Kontakt</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// ─── BOOK DATA ───
+const books = [
+  { title: "Im Käfig des Mondjägers", cat: "Dark Romance", words: "41.916", ch: 24, rating: 3.43, desc: "Eine junge Frau gerät in die Fänge eines geheimnisvollen Jägers, der weit mehr ist als ein Mann. Zwischen verbotener Lust und uralten Bünden muss sie sich entscheiden: Flucht oder Hingabe?" },
+  { title: "Süße Rache", cat: "Dark Romance", words: "20.413", ch: 12, rating: 3.86, desc: "Rache war noch nie so süß – und so gefährlich. Eine Geschichte von verratener Liebe, dunklen Geheimnissen und einer Frau, die zurückkommt, um zu nehmen, was ihr zusteht." },
+  { title: "Die letzte Verführung", cat: "Dark Romance", words: "18.972", ch: 12, rating: 4.0, desc: "Die letzte Verführung beginnt dort, wo andere enden. Ein Spiel aus Macht und Leidenschaft, bei dem die Grenzen zwischen Jäger und Gejagtem verschwimmen." },
+  { title: "Schneegrenze", cat: "Dark Romance", words: "4.659", ch: 3, rating: 4.71, desc: "Eine Kurzgeschichte an der Grenze zwischen Kälte und Glut. Zwei Fremde, eine einsame Hütte im Schnee – und eine Nacht, die alles verändert." },
+  { title: "Brutstätte der Finsternis", cat: "Dark Erotik", words: "20.077", ch: 12, rating: 3.71, desc: "In den Tiefen eines verlassenen Labors erwacht eine dunkle Macht. Eine Wissenschaftlerin kämpft um ihr Leben – und verliert ihr Herz an das Unvorstellbare." },
+  { title: "Schattenbrut der Xy'lan", cat: "Dark Erotik", words: "19.067", ch: 12, rating: 3.29, desc: "Eine Begegnung der dritten Art, die weit über das Irdische hinausgeht. Fremde Welten, fremde Körper, fremde Begierden." }
+];
+
+const grid = document.getElementById('bookGrid');
+
+books.forEach(b => {
+  const stars = '★'.repeat(Math.floor(b.rating)) + (b.rating % 1 >= 0.5 ? '½' : '');
+  const card = document.createElement('div');
+  card.className = 'book-card';
+  card.innerHTML = `
+    <div class="category">${b.cat}</div>
+    <h3>${b.title}</h3>
+    <div class="meta">
+      <span>📖 ${b.ch} Kapitel</span>
+      <span>📝 ${b.words} Wörter</span>
+    </div>
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.7">${b.desc}</p>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <span class="rating">${stars} ${b.rating}</span>
+    </div>
+    <div class="actions">
+      <a href="#" class="amazon" target="_blank" rel="noopener">→ Bei Amazon</a>
+      <a href="#" class="epub">📱 EPUB</a>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+</script>
+
+</body>
+</html>
