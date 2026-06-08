@@ -455,6 +455,100 @@
   .hero > *:nth-child(6) { animation-delay:0.5s; }
   .hero > *:nth-child(7) { animation-delay:0.6s; }
   .fade-section { animation:fadeUp 0.6s ease-out both; }
+
+  /* ─── AMAZON BOOKS GRID ─── */
+  .books-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:24px;
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  .book-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    transition:all 0.3s;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .book-card:hover {
+    border-color:var(--border-light);
+    transform:translateY(-3px);
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .book-card .cover-wrap {
+    aspect-ratio:3/4;
+    overflow:hidden;
+    background:var(--surface);
+    position:relative;
+  }
+
+  .book-card .cover-wrap img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.4s;
+  }
+
+  .book-card:hover .cover-wrap img {
+    transform:scale(1.05);
+  }
+
+  .book-card .book-info {
+    padding:16px 18px 18px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .book-card .book-info h4 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:0.95rem;
+    font-weight:500;
+    color:var(--text);
+    line-height:1.4;
+    flex:1;
+  }
+
+  .book-card .book-info a {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:8px 16px;
+    background:linear-gradient(135deg, var(--accent), var(--accent-dim));
+    color:#fff;
+    border-radius:100px;
+    text-decoration:none;
+    font-size:0.78rem;
+    transition:all 0.3s;
+    margin-top:auto;
+  }
+
+  .book-card .book-info a:hover {
+    box-shadow:0 4px 16px var(--accent-glow);
+    transform:translateY(-1px);
+  }
+
+  @media (max-width:700px) {
+    .books-grid {
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+  }
+  @media (max-width:400px) {
+    .books-grid {
+      grid-template-columns:1fr;
+      max-width:260px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -470,6 +564,7 @@
   <symbol id="asterism" viewBox="0 0 24 24"><path d="M12 3l1.5 6.5L20 11l-6.5 1.5L12 19l-1.5-6.5L4 11l6.5-1.5z"/><circle cx="18" cy="19" r="1.5" opacity="0.5"/><circle cx="12" cy="21" r="1.5" opacity="0.3"/><circle cx="6" cy="19" r="1.5" opacity="0.5"/></symbol>
   <symbol id="star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></symbol>
   <symbol id="infinity" viewBox="0 0 24 24"><path d="M18 8c-1.7 0-3.2 1.1-6 4-2.8-2.9-4.3-4-6-4C3.6 8 2 9.8 2 12s1.6 4 4 4c1.7 0 3.2-1.1 6-4 2.8 2.9 4.3 4 6 4 2.4 0 4-1.8 4-4s-1.6-4-4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <!-- ─── HERO ─── -->
@@ -495,6 +590,10 @@
     <a href="https://www.fanfiktion.de/s/6a25d610001048c3237150bb/1/Blutmond-ueber-dem-Anwesen" target="_blank" rel="noopener noreferrer" class="primary">
       <svg class="ico" viewBox="0 0 24 24"><use href="#book"/></svg>
       FanFiktion.de
+    </a>
+    <a href="#amazon-buecher">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#cart"/></svg>
+      Amazon B&uuml;cher
     </a>
     <a href="#ueber-mich">
       <svg class="ico" viewBox="0 0 24 24"><use href="#person"/></svg>
@@ -554,6 +653,72 @@
         Jetzt lesen
         <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#arrow-right"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AMAZON BÜCHER ─── -->
+<section id="amazon-buecher" class="fade-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="ornament">
+        <svg viewBox="0 0 24 24"><use href="#cart"/></svg>
+        <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+        <svg viewBox="0 0 24 24"><use href="#cart"/></svg>
+      </div>
+      <p class="label">Jetzt erh&auml;ltlich</p>
+      <h2>Auf Amazon</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="cover-wrap">
+          <img src="https://m.media-amazon.com/images/I/7150uK8oTuL._SL1500_.jpg" alt="Schattenkönig über Eos" loading="lazy">
+        </div>
+        <div class="book-info">
+          <h4>Schattenk&ouml;nig &uuml;ber Eos</h4>
+          <a href="https://www.amazon.de/dp/B0H1PHV1GY" target="_blank" rel="noopener noreferrer">
+            <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg>
+            Bei Amazon kaufen
+          </a>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="cover-wrap">
+          <img src="https://m.media-amazon.com/images/I/71415DJoPXL._SL1500_.jpg" alt="Die letzte Verführung" loading="lazy">
+        </div>
+        <div class="book-info">
+          <h4>Die letzte Verf&uuml;hrung</h4>
+          <a href="https://www.amazon.de/dp/B0H2JCQFMN" target="_blank" rel="noopener noreferrer">
+            <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg>
+            Bei Amazon kaufen
+          </a>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="cover-wrap">
+          <img src="https://m.media-amazon.com/images/I/71N3Q+G7PcL._SL1500_.jpg" alt="Süße Rache" loading="lazy">
+        </div>
+        <div class="book-info">
+          <h4>S&uuml;&szlig;e Rache</h4>
+          <a href="https://www.amazon.de/dp/B0H4BK2RBY" target="_blank" rel="noopener noreferrer">
+            <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg>
+            Bei Amazon kaufen
+          </a>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="cover-wrap">
+          <img src="https://m.media-amazon.com/images/I/51v96LdYZ9L._SL1200_.jpg" alt="Tentakel" loading="lazy">
+        </div>
+        <div class="book-info">
+          <h4>Tentakel</h4>
+          <a href="https://www.amazon.de/dp/B0GY94RBBM" target="_blank" rel="noopener noreferrer">
+            <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg>
+            Bei Amazon kaufen
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
