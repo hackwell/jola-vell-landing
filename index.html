@@ -18,12 +18,16 @@
     --text-muted: #6e6a82;
     --accent: #c41e3a;
     --accent-dim: #7a1428;
-    --accent-glow: rgba(196,30,58,0.12);
+    --accent-glow: rgba(196,30,58,0.15);
     --gold: #c9a84c;
     --gold-dim: #8a7640;
-    --gold-glow: rgba(201,168,76,0.08);
+    --gold-glow: rgba(201,168,76,0.10);
     --radius: 10px;
     --radius-lg: 16px;
+    --rose: #b8475a;
+    --rose-dim: #6e2a3a;
+    --plum: #1a0a18;
+    --ink: #0a060e;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -38,16 +42,66 @@
     -webkit-font-smoothing:antialiased;
   }
 
+  /* ─── ANIMATED MESH GRADIENT BACKGROUND ─── */
+  @keyframes meshShift {
+    0%   { transform:translate(0,0) scale(1); }
+    25%  { transform:translate(-3%,2%) scale(1.08); }
+    50%  { transform:translate(2%,-3%) scale(1.05); }
+    75%  { transform:translate(-2%,4%) scale(1.03); }
+    100% { transform:translate(0,0) scale(1); }
+  }
+
+  @keyframes meshShift2 {
+    0%   { transform:translate(0,0) scale(1.1); }
+    33%  { transform:translate(4%,-2%) scale(0.95); }
+    66%  { transform:translate(-3%,1%) scale(1.07); }
+    100% { transform:translate(0,0) scale(1.1); }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity:0.6; }
+    50% { opacity:1; }
+  }
+
   body::before {
     content:'';
     position:fixed;
     inset:0;
     background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196,30,58,0.03) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 20% 100%, rgba(201,168,76,0.02) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 30% at 80% 80%, rgba(196,30,58,0.02) 0%, transparent 70%);
+      radial-gradient(ellipse 100% 60% at 55% 15%, rgba(147,51,77,0.08) 0%, transparent 65%),
+      radial-gradient(ellipse 70% 50% at 30% 80%, rgba(201,168,76,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 75% 70%, rgba(196,30,58,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse 90% 55% at 20% 30%, rgba(88,28,65,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 50% at 80% 20%, rgba(180,60,80,0.03) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 50% 50%, rgba(10,6,14,0.6) 0%, transparent 100%);
     pointer-events:none;
     z-index:0;
+    animation:meshShift 25s ease-in-out infinite;
+  }
+
+  body::after {
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 60% 40% at 70% 30%, rgba(201,168,76,0.02) 0%, transparent 50%);
+    pointer-events:none;
+    z-index:0;
+    animation:meshShift2 35s ease-in-out infinite;
+    mix-blend-mode:overlay;
+  }
+
+  /* ─── SUBTLE NOISE TEXTURE OVERLAY ─── */
+  .noise-overlay {
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    opacity:0.035;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat:repeat;
+    background-size:256px 256px;
   }
 
   .container { max-width:1000px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
@@ -66,6 +120,21 @@
     text-align:center;
     padding:100px 24px;
     position:relative;
+    overflow:hidden;
+  }
+
+  /* Hero atmosphere light */
+  .hero::before {
+    content:'';
+    position:absolute;
+    top:-30%;
+    left:50%;
+    transform:translateX(-50%);
+    width:90vmin;
+    height:90vmin;
+    background:radial-gradient(circle, rgba(196,30,58,0.06) 0%, rgba(147,51,77,0.03) 30%, transparent 60%);
+    pointer-events:none;
+    animation:glowPulse 8s ease-in-out infinite;
   }
 
   .hero::after {
@@ -74,6 +143,59 @@
     bottom:0; left:10%; right:10%;
     height:1px;
     background:linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+
+  /* ─── FLOATING EMBER PARTICLES ─── */
+  .ember-container {
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  @keyframes floatUp {
+    0%   { transform:translateY(100%) scale(0); opacity:0; }
+    10%  { opacity:0.8; }
+    90%  { opacity:0.6; }
+    100% { transform:translateY(-100vh) scale(1); opacity:0; }
+  }
+
+  @keyframes drift {
+    0%, 100% { margin-left:0; }
+    50% { margin-left:40px; }
+  }
+
+  .ember {
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--gold);
+    opacity:0;
+    animation:floatUp var(--dur,12s) ease-in var(--delay,0s) infinite;
+  }
+
+  .ember:nth-child(odd) {
+    width:2px;
+    height:2px;
+    background:var(--accent);
+  }
+
+  .ember:nth-child(3n) {
+    width:4px;
+    height:4px;
+    background:var(--rose);
+  }
+
+  .ember:nth-child(5n) {
+    animation-duration:18s;
+    animation-delay:2s;
+  }
+
+  .ember-wrap {
+    position:absolute;
+    animation:drift var(--drift-dur,20s) ease-in-out infinite;
   }
 
   .hero-ornament {
@@ -179,6 +301,44 @@
 
   /* ─── SECTION ─── */
   section { padding:100px 0; position:relative; }
+
+  /* ─── SECTION DIVIDER ORNAMENT ─── */
+  .section-divider {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    padding:0 24px;
+    margin-top:-20px;
+    margin-bottom:-20px;
+    position:relative;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .section-divider .line {
+    flex:1;
+    max-width:120px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    opacity:0.25;
+  }
+
+  .section-divider .ornament-svg {
+    display:flex;
+    gap:8px;
+    opacity:0.2;
+  }
+
+  .section-divider .ornament-svg svg {
+    width:10px;
+    height:10px;
+    fill:var(--gold-dim);
+  }
+
+  .section-divider .ornament-svg svg:nth-child(2) {
+    fill:var(--accent-dim);
+  }
 
   .section-header {
     text-align:center;
@@ -552,6 +712,7 @@
 </style>
 </head>
 <body>
+<div class="noise-overlay"></div>
 
 <!-- ─── SVG SPRITE ─── -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -565,10 +726,27 @@
   <symbol id="star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></symbol>
   <symbol id="infinity" viewBox="0 0 24 24"><path d="M18 8c-1.7 0-3.2 1.1-6 4-2.8-2.9-4.3-4-6-4C3.6 8 2 9.8 2 12s1.6 4 4 4c1.7 0 3.2-1.1 6-4 2.8 2.9 4.3 4 6 4 2.4 0 4-1.8 4-4s-1.6-4-4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="flame" viewBox="0 0 24 24"><path d="M12 2C8 6 4 10 4 14c0 4.4 3.6 8 8 8s8-3.6 8-8c0-4-4-8-8-12z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 22a4 4 0 0 0 4-4c0-1.8-2-4-4-6-2 2-4 4.2-4 6a4 4 0 0 0 4 4z" opacity="0.3" fill="currentColor"/></symbol>
+  <symbol id="scroll" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5" rx="2"/><path d="M8 8h8M8 12h6M8 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></symbol>
 </svg>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
+  <div class="ember-container">
+    <div class="ember-wrap" style="left:10%;--drift-dur:22s"><div class="ember" style="--dur:14s;--delay:0s"></div></div>
+    <div class="ember-wrap" style="left:25%;--drift-dur:18s"><div class="ember" style="--dur:16s;--delay:3s"></div></div>
+    <div class="ember-wrap" style="left:40%;--drift-dur:25s"><div class="ember" style="--dur:12s;--delay:5s"></div></div>
+    <div class="ember-wrap" style="left:55%;--drift-dur:20s"><div class="ember" style="--dur:15s;--delay:1s"></div></div>
+    <div class="ember-wrap" style="left:70%;--drift-dur:23s"><div class="ember" style="--dur:13s;--delay:7s"></div></div>
+    <div class="ember-wrap" style="left:85%;--drift-dur:17s"><div class="ember" style="--dur:18s;--delay:2s"></div></div>
+    <div class="ember-wrap" style="left:15%;--drift-dur:21s"><div class="ember" style="--dur:11s;--delay:4s"></div></div>
+    <div class="ember-wrap" style="left:50%;--drift-dur:19s"><div class="ember" style="--dur:17s;--delay:6s"></div></div>
+    <div class="ember-wrap" style="left:65%;--drift-dur:24s"><div class="ember" style="--dur:14s;--delay:8s"></div></div>
+    <div class="ember-wrap" style="left:35%;--drift-dur:16s"><div class="ember" style="--dur:19s;--delay:2.5s"></div></div>
+    <div class="ember-wrap" style="left:78%;--drift-dur:22s"><div class="ember" style="--dur:13s;--delay:9s"></div></div>
+    <div class="ember-wrap" style="left:5%;--drift-dur:20s"><div class="ember" style="--dur:15s;--delay:1.5s"></div></div>
+  </div>
   <div class="hero-ornament">
     <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
     <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
@@ -628,6 +806,17 @@
   </div>
 </section>
 
+<!-- ─── DIVIDER ─── -->
+<div class="section-divider" aria-hidden="true">
+  <div class="line"></div>
+  <div class="ornament-svg">
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#asterism"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+  </div>
+  <div class="line"></div>
+</div>
+
 <!-- ─── FANFIKTION ─── -->
 <section id="fanfiktion" class="fade-section">
   <div class="container">
@@ -656,6 +845,17 @@
     </div>
   </div>
 </section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="section-divider" aria-hidden="true">
+  <div class="line"></div>
+  <div class="ornament-svg">
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#asterism"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+  </div>
+  <div class="line"></div>
+</div>
 
 <!-- ─── AMAZON BÜCHER ─── -->
 <section id="amazon-buecher" class="fade-section">
@@ -722,6 +922,17 @@
     </div>
   </div>
 </section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="section-divider" aria-hidden="true">
+  <div class="line"></div>
+  <div class="ornament-svg">
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#asterism"/></svg>
+    <svg viewBox="0 0 24 24"><use href="#diamond"/></svg>
+  </div>
+  <div class="line"></div>
+</div>
 
 <!-- ─── ÜBER MICH ─── -->
 <section id="ueber-mich" class="fade-section">
