@@ -630,19 +630,7 @@
   .book-card .book-info a:hover { box-shadow:0 4px 16px var(--accent-glow); transform:translateY(-1px); }
 
   /* ─── ÜBER MICH ─── */
-  .about-layout {
-    display:grid; grid-template-columns:280px 1fr; gap:48px;
-    align-items:start; max-width:800px; margin:0 auto;
-  }
-  .about-portrait { position:sticky; top:80px; }
-  .portrait-frame {
-    border-radius:12px; overflow:hidden;
-    border:1px solid var(--border); background:var(--surface);
-    box-shadow:0 8px 40px rgba(0,0,0,0.4);
-  }
-  .portrait-img { display:block; width:100%; height:auto; aspect-ratio:400/520; object-fit:cover; object-position:center 30%; }
-  .portrait-caption { margin-top:12px; text-align:center; }
-  .pseudonym-note { font-size:0.7rem; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; }
+  .about-layout { max-width:680px; margin:0 auto; }
   .about-text .bio-text { color:var(--text-dim); line-height:2; font-weight:300; }
   .about-text .bio-text p { font-size:0.92rem; margin-bottom:16px; }
   .about-text .bio-text p strong { color:var(--text); font-weight:500; }
@@ -875,8 +863,6 @@
     .feature-visual { max-width:380px; margin:0 auto; }
   }
   @media (max-width:800px) {
-    .about-layout { grid-template-columns:1fr; gap:32px; }
-    .about-portrait { max-width:220px; margin:0 auto; position:static; }
     .chapter-text { max-width:none; }
   }
   @media (max-width:700px) {
@@ -1182,13 +1168,7 @@
       <div class="divider" data-reveal data-reveal-delay="1"></div>
     </div>
     <div class="about-layout">
-      <div class="about-portrait" data-reveal>
-        <div class="portrait-frame">
-          <img src="assets/jola-vell-portrait.png" alt="Jola Vell" class="portrait-img" width="400" height="520">
-        </div>
-        <div class="portrait-caption"><span class="pseudonym-note">Jola Vell ist ein Pseudonym</span></div>
-      </div>
-      <div class="about-text" data-reveal data-reveal-delay="1">
+      <div class="about-text" data-reveal>
         <div class="bio-text">
           <p>
             <strong>Jola Vell</strong> – das ist der Name, unter dem ich schreibe. Geboren und
