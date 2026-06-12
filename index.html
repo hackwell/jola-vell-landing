@@ -589,6 +589,21 @@
     grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
     gap:24px; max-width:900px; margin:0 auto;
   }
+  .books-grid--saga { max-width:680px; }
+  .books-group-label {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.5rem; font-weight:600; letter-spacing:0.04em;
+    color:var(--gold); text-align:center;
+    margin:56px 0 28px;
+  }
+  .books-group-label:first-of-type { margin-top:0; }
+  .band-badge {
+    position:absolute; top:10px; left:10px; z-index:1;
+    font-size:0.62rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold); background:rgba(8,8,13,0.8);
+    border:1px solid var(--gold-dim); border-radius:999px;
+    padding:4px 11px; backdrop-filter:blur(4px);
+  }
   .book-card {
     background:rgba(22,22,34,0.78);
     backdrop-filter:blur(2px);
@@ -1064,6 +1079,37 @@
         <h2 data-reveal data-reveal-delay="1">Auf Amazon</h2>
         <div class="divider" data-reveal data-reveal-delay="1"></div>
       </div>
+      <h3 class="books-group-label" data-reveal>Die Blutmond-Saga</h3>
+      <div class="books-grid books-grid--saga">
+        <div class="book-card">
+          <div class="cover-wrap"><span class="band-badge">Band 1</span><img src="https://m.media-amazon.com/images/I/71INd5JhXyL._SL1500_.jpg" alt="Fremdes Herz, eigenes Blut – Blutmond-Saga Band 1" loading="lazy"></div>
+          <div class="book-info">
+            <h4>Fremdes Herz, eigenes Blut</h4>
+            <a href="https://www.amazon.de/dp/B0GX52R9M1" target="_blank" rel="noopener noreferrer">
+              <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
+            </a>
+          </div>
+        </div>
+        <div class="book-card">
+          <div class="cover-wrap"><span class="band-badge">Band 2</span><img src="https://m.media-amazon.com/images/I/715Il6rIERL._SL1500_.jpg" alt="Die Freske des Verrats – Blutmond-Saga Band 2" loading="lazy"></div>
+          <div class="book-info">
+            <h4>Die Freske des Verrats</h4>
+            <a href="https://www.amazon.de/dp/B0H4WZ1BMK" target="_blank" rel="noopener noreferrer">
+              <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
+            </a>
+          </div>
+        </div>
+        <div class="book-card">
+          <div class="cover-wrap"><span class="band-badge">Band 3</span><img src="https://m.media-amazon.com/images/I/71k7S2lcxjL._SL1500_.jpg" alt="Der Pakt der Verdammnis – Blutmond-Saga Band 3" loading="lazy"></div>
+          <div class="book-info">
+            <h4>Der Pakt der Verdammnis</h4>
+            <a href="https://www.amazon.de/dp/B0H4XBD9SJ" target="_blank" rel="noopener noreferrer">
+              <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
+            </a>
+          </div>
+        </div>
+      </div>
+      <h3 class="books-group-label" data-reveal>Einzelbände</h3>
       <div class="books-grid">
         <div class="book-card">
           <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/7150uK8oTuL._SL1500_.jpg" alt="Schattenkönig über Eos" loading="lazy"></div>
@@ -1097,33 +1143,6 @@
           <div class="book-info">
             <h4>Tentakel</h4>
             <a href="https://www.amazon.de/dp/B0GY94RBBM" target="_blank" rel="noopener noreferrer">
-              <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
-            </a>
-          </div>
-        </div>
-        <div class="book-card">
-          <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71INd5JhXyL._SL1500_.jpg" alt="Fremdes Herz, eigenes Blut – Blutmond Saga 1" loading="lazy"></div>
-          <div class="book-info">
-            <h4>Fremdes Herz, eigenes Blut (Blutmond Saga 1)</h4>
-            <a href="https://www.amazon.de/dp/B0GX52R9M1" target="_blank" rel="noopener noreferrer">
-              <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
-            </a>
-          </div>
-        </div>
-        <div class="book-card">
-          <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/715Il6rIERL._SL1500_.jpg" alt="Die Freske des Verrats – Blutmond Saga 2" loading="lazy"></div>
-          <div class="book-info">
-            <h4>Die Freske des Verrats (Blutmond Saga 2)</h4>
-            <a href="https://www.amazon.de/dp/B0H4WZ1BMK" target="_blank" rel="noopener noreferrer">
-              <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
-            </a>
-          </div>
-        </div>
-        <div class="book-card">
-          <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71k7S2lcxjL._SL1500_.jpg" alt="Der Pakt der Verdammnis – Blutmond Saga 3" loading="lazy"></div>
-          <div class="book-info">
-            <h4>Der Pakt der Verdammnis (Blutmond Saga 3)</h4>
-            <a href="https://www.amazon.de/dp/B0H4XBD9SJ" target="_blank" rel="noopener noreferrer">
               <svg class="ico ico-sm" viewBox="0 0 24 24"><use href="#cart"/></svg> Bei Amazon kaufen
             </a>
           </div>
